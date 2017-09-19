@@ -1,0 +1,391 @@
+<?xml version='1.0' encoding='utf-8'?>
+<interface>
+  <object class="tk.Frame" id="mainwindow">
+    <property name="height">500</property>
+    <property name="padx">25</property>
+    <property name="pady">25</property>
+    <property name="width">500</property>
+    <layout>
+      <property name="column">0</property>
+      <property name="ipadx">0</property>
+      <property name="padx">0</property>
+      <property name="propagate">True</property>
+      <property name="row">0</property>
+      <columns>
+        <column id="0">
+          <property name="weight">0</property>
+        </column>
+        <column id="1">
+          <property name="weight">0</property>
+        </column>
+      </columns>
+      <rows>
+        <row id="0">
+          <property name="weight">5</property>
+        </row>
+        <row id="1">
+          <property name="weight">5</property>
+        </row>
+      </rows>
+    </layout>
+    <child>
+      <object class="tk.Label" id="Volume_File">
+        <property name="font">TkCaptionFont</property>
+        <property name="pady">0</property>
+        <property name="text" translatable="yes">Volume File Header</property>
+        <layout>
+          <property name="column">0</property>
+          <property name="propagate">True</property>
+          <property name="row">0</property>
+          <property name="sticky">w</property>
+        </layout>
+      </object>
+    </child>
+    <child>
+      <object class="tk.Entry" id="entry_volume_file">
+        <property name="insertontime">0</property>
+        <property name="justify">center</property>
+        <property name="selectborderwidth">0</property>
+        <property name="state">readonly</property>
+        <property name="textvariable">string:volume_file</property>
+        <property name="width">0</property>
+        <layout>
+          <property name="column">1</property>
+          <property name="columnspan">1</property>
+          <property name="ipadx">0</property>
+          <property name="ipady">0</property>
+          <property name="padx">0</property>
+          <property name="pady">0</property>
+          <property name="propagate">True</property>
+          <property name="row">0</property>
+          <property name="sticky">w</property>
+        </layout>
+      </object>
+    </child>
+    <child>
+      <object class="tk.Button" id="Button_select_vhfile">
+        <property name="command">select_volume_file</property>
+        <property name="compound">top</property>
+        <property name="padx">10</property>
+        <property name="repeatinterval">0</property>
+        <property name="text" translatable="yes">...</property>
+        <layout>
+          <property name="column">2</property>
+          <property name="columnspan">1</property>
+          <property name="propagate">True</property>
+          <property name="row">0</property>
+          <property name="rowspan">1</property>
+          <property name="sticky">w</property>
+        </layout>
+      </object>
+    </child>
+    <child>
+      <object class="tk.Label" id="Working_dir">
+        <property name="font">TkCaptionFont</property>
+        <property name="text" translatable="yes">Working Directory</property>
+        <layout>
+          <property name="column">0</property>
+          <property name="propagate">True</property>
+          <property name="row">1</property>
+          <property name="sticky">w</property>
+        </layout>
+      </object>
+    </child>
+    <child>
+      <object class="tk.Entry" id="entry_wdir">
+        <property name="state">readonly</property>
+        <property name="textvariable">string:working_directory</property>
+        <layout>
+          <property name="column">1</property>
+          <property name="propagate">True</property>
+          <property name="row">1</property>
+          <property name="sticky">w</property>
+        </layout>
+      </object>
+    </child>
+    <child>
+      <object class="tk.Button" id="Button_select_wdir">
+        <property name="command">select_working_dir</property>
+        <property name="padx">10</property>
+        <property name="text" translatable="yes">...</property>
+        <layout>
+          <property name="column">2</property>
+          <property name="propagate">True</property>
+          <property name="row">1</property>
+          <property name="sticky">w</property>
+        </layout>
+      </object>
+    </child>
+    <child>
+      <object class="tk.Label" id="Sigma">
+        <property name="compound">top</property>
+        <property name="font">TkCaptionFont</property>
+        <property name="pady">1</property>
+        <property name="text" translatable="yes">Sigma</property>
+        <layout>
+          <property name="column">0</property>
+          <property name="propagate">True</property>
+          <property name="row">2</property>
+          <property name="sticky">w</property>
+        </layout>
+      </object>
+    </child>
+    <child>
+      <object class="tk.Scale" id="scale_sigma">
+        <property name="command">set_sigma</property>
+        <property name="digits">4</property>
+        <property name="font">TkTextFont</property>
+        <property name="from_">0.01</property>
+        <property name="length">162</property>
+        <property name="orient">horizontal</property>
+        <property name="resolution">0.0001</property>
+        <property name="showvalue">true</property>
+        <property name="sliderlength">20</property>
+        <property name="tickinterval">0.0</property>
+        <property name="to">4</property>
+        <property name="variable">double:sigma</property>
+        <layout>
+          <property name="column">1</property>
+          <property name="propagate">True</property>
+          <property name="row">2</property>
+          <property name="sticky">w</property>
+        </layout>
+      </object>
+    </child>
+    <child>
+      <object class="tk.Label" id="alpha1">
+        <property name="font">TkCaptionFont</property>
+        <property name="justify">left</property>
+        <property name="relief">flat</property>
+        <property name="takefocus">false</property>
+        <property name="text" translatable="yes">Alpha 1</property>
+        <layout>
+          <property name="column">0</property>
+          <property name="propagate">True</property>
+          <property name="row">3</property>
+          <property name="sticky">w</property>
+        </layout>
+      </object>
+    </child>
+    <child>
+      <object class="tk.Entry" id="entry_alpha1">
+        <property name="textvariable">double:alpha1</property>
+        <layout>
+          <property name="column">1</property>
+          <property name="propagate">True</property>
+          <property name="row">3</property>
+          <property name="sticky">w</property>
+        </layout>
+      </object>
+    </child>
+    <child>
+      <object class="tk.Label" id="alpha 2">
+        <property name="font">TkCaptionFont</property>
+        <property name="text" translatable="yes">Alpha 2</property>
+        <layout>
+          <property name="column">0</property>
+          <property name="propagate">True</property>
+          <property name="row">4</property>
+          <property name="sticky">w</property>
+        </layout>
+      </object>
+    </child>
+    <child>
+      <object class="tk.Entry" id="entry_alpha2">
+        <property name="cursor">arrow</property>
+        <property name="selectborderwidth">0</property>
+        <property name="textvariable">double:alpha2</property>
+        <layout>
+          <property name="column">1</property>
+          <property name="propagate">True</property>
+          <property name="row">4</property>
+          <property name="sticky">w</property>
+        </layout>
+      </object>
+    </child>
+    <child>
+      <object class="tk.Label" id="lowthresh">
+        <property name="font">TkCaptionFont</property>
+        <property name="text" translatable="yes">Lower Threshold</property>
+        <layout>
+          <property name="column">0</property>
+          <property name="propagate">True</property>
+          <property name="row">5</property>
+          <property name="sticky">w</property>
+        </layout>
+      </object>
+    </child>
+    <child>
+      <object class="tk.Scale" id="scale_low_thresh">
+        <property name="command">set_low_thresh</property>
+        <property name="from_">0</property>
+        <property name="length">162</property>
+        <property name="orient">horizontal</property>
+        <property name="repeatdelay">0</property>
+        <property name="repeatinterval">0</property>
+        <property name="showvalue">true</property>
+        <property name="sliderlength">20</property>
+        <property name="to">255</property>
+        <property name="variable">int:low_thresh</property>
+        <layout>
+          <property name="column">1</property>
+          <property name="propagate">True</property>
+          <property name="row">5</property>
+          <property name="sticky">w</property>
+        </layout>
+      </object>
+    </child>
+    <child>
+      <object class="tk.Label" id="upthresh">
+        <property name="font">TkCaptionFont</property>
+        <property name="text" translatable="yes">Upper Threshold</property>
+        <layout>
+          <property name="column">0</property>
+          <property name="propagate">True</property>
+          <property name="row">6</property>
+          <property name="sticky">w</property>
+        </layout>
+      </object>
+    </child>
+    <child>
+      <object class="tk.Scale" id="scale_up_thresh">
+        <property name="command">set_up_thresh</property>
+        <property name="digits">0</property>
+        <property name="from_">0</property>
+        <property name="length">162</property>
+        <property name="orient">horizontal</property>
+        <property name="repeatdelay">0</property>
+        <property name="repeatinterval">0</property>
+        <property name="sliderlength">20</property>
+        <property name="to">255</property>
+        <property name="variable">string:up_thresh</property>
+        <layout>
+          <property name="column">1</property>
+          <property name="propagate">True</property>
+          <property name="row">6</property>
+          <property name="sticky">w</property>
+        </layout>
+      </object>
+    </child>
+    <child>
+      <object class="tk.Label" id="config">
+        <property name="font">TkCaptionFont</property>
+        <property name="text" translatable="yes">Configuration file</property>
+        <layout>
+          <property name="column">0</property>
+          <property name="propagate">True</property>
+          <property name="row">7</property>
+          <property name="sticky">w</property>
+        </layout>
+      </object>
+    </child>
+    <child>
+      <object class="tk.Entry" id="entry_config">
+        <property name="insertborderwidth">0</property>
+        <property name="insertontime">0</property>
+        <property name="textvariable">string:config_file</property>
+        <layout>
+          <property name="column">1</property>
+          <property name="propagate">True</property>
+          <property name="row">7</property>
+          <property name="sticky">w</property>
+        </layout>
+      </object>
+    </child>
+    <child>
+      <object class="tk.Button" id="button_config">
+        <property name="command">select_config_file</property>
+        <property name="text" translatable="yes">...</property>
+        <layout>
+          <property name="column">2</property>
+          <property name="propagate">True</property>
+          <property name="row">7</property>
+          <property name="sticky">w</property>
+        </layout>
+      </object>
+    </child>
+    <child>
+      <object class="tk.Label" id="create_dir">
+        <property name="font">TkCaptionFont</property>
+        <property name="pady">0</property>
+        <property name="text" translatable="yes">Output Directory</property>
+        <layout>
+          <property name="column">0</property>
+          <property name="propagate">True</property>
+          <property name="row">8</property>
+          <property name="sticky">w</property>
+        </layout>
+      </object>
+    </child>
+    <child>
+      <object class="tk.Entry" id="entry_out_dir">
+        <property name="insertontime">0</property>
+        <property name="textvariable">string:output_dir</property>
+        <layout>
+          <property name="column">1</property>
+          <property name="propagate">True</property>
+          <property name="row">8</property>
+          <property name="sticky">w</property>
+        </layout>
+      </object>
+    </child>
+    <child>
+      <object class="tk.Button" id="button_outputdir">
+        <property name="command">select_output_directory</property>
+        <property name="text" translatable="yes">...</property>
+        <layout>
+          <property name="column">2</property>
+          <property name="propagate">True</property>
+          <property name="row">8</property>
+          <property name="sticky">w</property>
+        </layout>
+      </object>
+    </child>
+    <child>
+      <object class="ttk.Frame" id="LogFrame">
+        <property name="height">200</property>
+        <property name="width">200</property>
+        <layout>
+          <property name="column">0</property>
+          <property name="propagate">True</property>
+          <property name="row">11</property>
+        </layout>
+      </object>
+    </child>
+    <child>
+      <object class="ttk.Label" id="alpha1_test">
+        <property name="text" translatable="yes">test</property>
+        <property name="textvariable">string:label_alpha1</property>
+        <layout>
+          <property name="column">1</property>
+          <property name="propagate">True</property>
+          <property name="row">3</property>
+          <property name="sticky">e</property>
+        </layout>
+      </object>
+    </child>
+    <child>
+      <object class="ttk.Button" id="Button_Run">
+        <property name="text" translatable="yes">Run</property>
+        <layout>
+          <property name="column">1</property>
+          <property name="pady">20</property>
+          <property name="propagate">True</property>
+          <property name="row">10</property>
+          <property name="sticky">e</property>
+        </layout>
+      </object>
+    </child>
+    <child>
+      <object class="tk.Button" id="Button_1">
+        <property name="command">print_vars</property>
+        <property name="text" translatable="yes">Print Variables</property>
+        <layout>
+          <property name="column">0</property>
+          <property name="propagate">True</property>
+          <property name="row">12</property>
+        </layout>
+      </object>
+    </child>
+  </object>
+</interface>

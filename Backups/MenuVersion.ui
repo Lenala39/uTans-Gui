@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='utf-8'?>
+<interface>
+  <object class="tk.Menu" id="main_menu">
+    <child>
+      <object class="tk.Menuitem.Submenu" id="Volume_file">
+        <property name="label" translatable="yes">Volume FIle</property>
+        <child>
+          <object class="tk.Menuitem.Command" id="vfile_open">
+            <property name="command_id_arg">false</property>
+            <property name="label" translatable="yes">vfile_open</property>
+          </object>
+        </child>
+      </object>
+    </child>
+  </object>
+</interface>
