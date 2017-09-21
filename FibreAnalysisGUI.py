@@ -2,6 +2,11 @@
 import tkinter as tk  # for python 3
 import pygubu
 from tkinter import filedialog
+from tkinter import scrolledtext
+import os 
+import subprocess 
+from os import system 
+import sys 
 #from tkinter.filedialog import askdirectory
 
 
@@ -18,40 +23,34 @@ class Application:
         self.mainwindow = builder.get_object('mainwindow', master)
 
         #get variables from gui elements
-        volume_file = builder.get_variable("volume_file")
-        working_directory = builder.get_variable("working_directory")
-        sigma = builder.get_variable("sigma")
-        alpha1 = builder.get_variable("alpha1")
-        alpha2 = builder.get_variable("alpha2")
-        low_thresh = builder.get_variable("low_thresh")
-        up_thresh = builder.get_variable("up_thresh")
-        config_file = builder.get_variable("config_file")
-        output_dir = builder.get_variable("output_dir")
-
-
-        label_alpha1 = builder.get_variable("label_alpha1")
+        self.volume_file = builder.get_variable("volume_file")
+        self.working_directory = builder.get_variable("working_directory")
+        self.sigma = builder.get_variable("sigma")
+        self.alpha1 = builder.get_variable("alpha1")
+        self.alpha2 = builder.get_variable("alpha2")
+        self.low_thresh = builder.get_variable("low_thresh")
+        self.up_thresh = builder.get_variable("up_thresh")
+        self.output_dir = builder.get_variable("output_dir")
         
 
         #get GUI elements like scales
-        scale_sigma = builder.get_object("scale_sigma")
-        scale_low_thresh = builder.get_object("scale_low_thresh")
-        scale_up_thresh = builder.get_object("scale_up_thresh")
-        entry_alpha1 = builder.get_object("entry_alpha1")
-        entry_alpha2 = builder.get_object("entry_alpha2")
+        self.scale_sigma = builder.get_object("scale_sigma")
+        self.scale_sigma.set(4)
+        self.scale_low_thresh = builder.get_object("scale_low_thresh")
+        self.scale_low_thresh.set(4.4)
+        self.scale_up_thresh = builder.get_object("scale_up_thresh")
+        self.scale_up_thresh.set(255)
+        self.entry_alpha1 = builder.get_object("entry_alpha1")
+        self.entry_alpha1.insert(0, "0.5")
+        self.entry_alpha2 = builder.get_object("entry_alpha2")
+        self.entry_alpha2.insert(0, "2.0")
 
-        '''
-        self.shared_data = {
-            "vol_file" : 1,
-            "working_dir" : "select working directory",
-            "sigma" : 2,
-            "alpha1" : 1,
-            "alpha2" : 0.5,
-            "low_thresh" : 0,
-            "up_thresh" : 255,
-            "config_file" : "select config file",
-            "output_dir" : "select output directory"
-        }
-        '''
+
+       
+
+        #checks if output dir is set
+        self.checkOutputDir = False
+
 
         def select_volume_file():
             ''' 
@@ -60,16 +59,9 @@ class Application:
 
             #open file dialog to open header file
             tmp = filedialog.askopenfilename(
-                  initialdir="/home/lena/Downloads", title="Volume Header File Select", filetypes=[("JPG files", ".jpg")])
+                  initialdir="/home/lena/Downloads", title="Volume Header File Select", filetypes=[("Volume Header", ".nhdr")])
             #update variable to display correct text in Entry
-            volume_file.set(tmp)
-
-        def set_alpha1():
-            '''
-            tmp = entry_alpha1.get()
-            alpha1 = tmp
-            print(alpha1)
-            '''
+            self.volume_file.set(tmp)
 
            
         
@@ -80,41 +72,14 @@ class Application:
             #open file dialog to open header file
             tmp = filedialog.askdirectory()
             #update variable to display correct text in Entry
-            working_directory.set(tmp)
-
-       
-        def set_sigma(self):
-            '''
-            updates the variable sigma with the current slider value
-            open interval at 0 for sigma, so 0 made into 0.001
-            
-            sigma = scale_sigma.get()
-            #print(sigma) 
-            if (sigma == 0.0):
-                sigma = 0.001
-            '''
-
-        def set_low_thresh(self):
-            '''
-            updates the variable low_thresh with current slider value
-            
-            low_thresh = scale_low_thresh.get()
-            '''
-            
-
-        def set_up_thresh(self):
-            '''
-            updates the variable up_thresh with current slider value
-            
-            up_thresh = scale_up_thresh.get()
-            '''
+            self.working_directory.set(tmp)
 
         def select_config_file():
             '''
             opens file dialog to select optional configuration file 
             '''
             tmp = filedialog.askopenfilename(initialdir="/home/lena/Downloads", title="Configuration File Select", filetypes=[("JPG files", ".jpg")])
-            config_file.set(tmp)
+            self.config_file.set(tmp)
 
         def select_output_directory():
             '''
@@ -123,38 +88,53 @@ class Application:
             #open file dialog to open header file
             tmp = filedialog.askdirectory()
             #update variable to display correct text in Entry
-            output_dir.set(tmp)
+            self.output_dir.set(tmp)
+            self.checkOutputDir = True
+
 
         def run_application():
             print("hello")
+            
+            #optional output directory
+            #if none selected, equivalent to working directory
+            if(self.checkOutputDir == False):
+                self.output_dir.set(self.working_directory.get())
+
+            #check correct thresholds
+            if(self.up_thresh.get() <= self.low_thresh.get()):
+                print("error")
+            else:                
+                command = "cd %s && ./FibreSeparator %s --sigma %d  --alpha1 %s --alpha2 %s --lowthresh %d --upthresh %d" % (self.working_directory.get(), self.volume_file.get(), self.scale_sigma.get(), self.entry_alpha1.get(), self.entry_alpha2.get(), self.scale_low_thresh.get(), self.scale_up_thresh.get())
+                print(command)
+                system(command)
+                
+            
 
         def print_vars():
-            print("volume File Path:", volume_file.get()) 
+            print("volume File Path:", self.volume_file.get()) 
             
-            print("working directory path:", working_directory.get()) 
+            print("working directory path:", self.working_directory.get()) 
 
-            print("sigma:", scale_sigma.get())
+            print("sigma:", self.scale_sigma.get())
 
-            print("alpha1:", entry_alpha1.get())
+            print("alpha1:", self.entry_alpha1.get())
 
-            print("alpha2:", entry_alpha2.get())
+            print("alpha2:", self.entry_alpha2.get())
 
-            print("low_thresh:", scale_low_thresh.get())
+            print("low_thresh:", self.scale_low_thresh.get())
 
-            print("up_thresh:", scale_up_thresh.get())
+            print("up_thresh:", self.scale_up_thresh.get())
 
-            print("output_dir: ", output_dir.get())
+            print("output_dir: ", self.output_dir.get())
 
         self.callbacks = {
             'select_volume_file' : select_volume_file,
             'select_working_dir' : select_working_dir,
-            'set_sigma' : set_sigma,
-            'set_low_thresh': set_low_thresh,
-            'set_up_thresh' : set_up_thresh,
             'select_config_file' : select_config_file,
             'select_output_directory' : select_output_directory,
-            'print_vars' : print_vars
-            #'set_alpha1' : set_alpha1            
+            'print_vars' : print_vars,
+            'run_application' : run_application, 
+            
         }
 
         builder.connect_callbacks(self.callbacks)
@@ -167,3 +147,4 @@ if __name__ == '__main__':
     root = tk.Tk()
     app = Application(root)
     root.mainloop()
+
