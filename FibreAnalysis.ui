@@ -11,14 +11,6 @@
       <property name="padx">0</property>
       <property name="propagate">True</property>
       <property name="row">0</property>
-      <rows>
-        <row id="0">
-          <property name="weight">5</property>
-        </row>
-        <row id="1">
-          <property name="weight">5</property>
-        </row>
-      </rows>
       <columns>
         <column id="0">
           <property name="weight">0</property>
@@ -27,7 +19,86 @@
           <property name="weight">0</property>
         </column>
       </columns>
+      <rows>
+        <row id="0">
+          <property name="weight">5</property>
+        </row>
+        <row id="1">
+          <property name="weight">5</property>
+        </row>
+      </rows>
     </layout>
+    <child>
+      <object class="tk.Label" id="Title">
+        <property name="font">TkCaptionFont</property>
+        <property name="takefocus">false</property>
+        <property name="text" translatable="yes">Utans-Filt Fibre Seperator </property>
+        <property name="underline">0</property>
+        <layout>
+          <property name="column">0</property>
+          <property name="columnspan">4</property>
+          <property name="propagate">True</property>
+          <property name="row">0</property>
+          <property name="rowspan">1</property>
+        </layout>
+      </object>
+    </child>
+    <child>
+      <object class="tk.Label" id="Config File">
+        <property name="font">TkCaptionFont</property>
+        <property name="text" translatable="yes">Use Config File </property>
+        <layout>
+          <property name="column">0</property>
+          <property name="propagate">True</property>
+          <property name="row">1</property>
+          <property name="sticky">w</property>
+        </layout>
+      </object>
+    </child>
+    <child>
+      <object class="tk.Entry" id="config_file">
+        <property name="state">readonly</property>
+        <property name="textvariable">string:config_file</property>
+        <layout>
+          <property name="column">1</property>
+          <property name="propagate">True</property>
+          <property name="row">1</property>
+          <property name="sticky">w</property>
+        </layout>
+      </object>
+    </child>
+    <child>
+      <object class="tk.Button" id="button_select_config">
+        <property name="command">select_config_file</property>
+        <property name="default">disabled</property>
+        <property name="state">disabled</property>
+        <property name="text" translatable="yes">...</property>
+        <layout>
+          <property name="column">2</property>
+          <property name="propagate">True</property>
+          <property name="row">1</property>
+          <property name="sticky">w</property>
+        </layout>
+      </object>
+    </child>
+    <child>
+      <object class="tk.Checkbutton" id="checkbox_config">
+        <property name="anchor">w</property>
+        <property name="command">check_config</property>
+        <property name="indicatoron">true</property>
+        <property name="offvalue">0</property>
+        <property name="onvalue">1</property>
+        <property name="state">normal</property>
+        <property name="variable">boolean:use_config</property>
+        <layout>
+          <property name="column">4</property>
+          <property name="padx">0</property>
+          <property name="propagate">True</property>
+          <property name="row">1</property>
+          <property name="sticky">w</property>
+        </layout>
+      </object>
+    </child>
     <child>
       <object class="tk.Label" id="Volume_File">
         <property name="font">TkCaptionFont</property>
@@ -36,7 +107,7 @@
         <layout>
           <property name="column">0</property>
           <property name="propagate">True</property>
-          <property name="row">0</property>
+          <property name="row">10</property>
           <property name="sticky">w</property>
         </layout>
       </object>
@@ -53,7 +124,7 @@
           <property name="padx">0</property>
           <property name="pady">0</property>
           <property name="propagate">True</property>
-          <property name="row">0</property>
+          <property name="row">10</property>
           <property name="sticky">w</property>
         </layout>
       </object>
@@ -69,7 +140,7 @@
           <property name="column">2</property>
           <property name="columnspan">1</property>
           <property name="propagate">True</property>
-          <property name="row">0</property>
+          <property name="row">10</property>
           <property name="rowspan">1</property>
           <property name="sticky">w</property>
         </layout>
@@ -82,7 +153,7 @@
         <layout>
           <property name="column">0</property>
           <property name="propagate">True</property>
-          <property name="row">1</property>
+          <property name="row">9</property>
           <property name="sticky">w</property>
         </layout>
       </object>
@@ -94,7 +165,7 @@
         <layout>
           <property name="column">1</property>
           <property name="propagate">True</property>
-          <property name="row">1</property>
+          <property name="row">9</property>
           <property name="sticky">w</property>
         </layout>
       </object>
@@ -107,7 +178,7 @@
         <layout>
           <property name="column">2</property>
           <property name="propagate">True</property>
-          <property name="row">1</property>
+          <property name="row">9</property>
           <property name="sticky">w</property>
         </layout>
       </object>
@@ -298,18 +369,6 @@
       </object>
     </child>
     <child>
-      <object class="tk.Button" id="Button_print_vars">
-        <property name="command">print_vars</property>
-        <property name="text" translatable="yes">Print Variables</property>
-        <layout>
-          <property name="column">2</property>
-          <property name="propagate">True</property>
-          <property name="row">11</property>
-          <property name="sticky">w</property>
-        </layout>
-      </object>
-    </child>
-    <child>
       <object class="tk.Button" id="Button_Run">
         <property name="command">run_application</property>
         <property name="font">TkCaptionFont</property>
@@ -319,21 +378,8 @@
           <property name="column">2</property>
           <property name="pady">10</property>
           <property name="propagate">True</property>
-          <property name="row">10</property>
+          <property name="row">11</property>
           <property name="sticky">w</property>
-        </layout>
-      </object>
-    </child>
-    <child>
-      <object class="tk.Label" id="Log_Title">
-        <property name="font">TkHeadingFont</property>
-        <property name="padx">15</property>
-        <property name="text" translatable="yes">Output Log</property>
-        <layout>
-          <property name="column">0</property>
-          <property name="propagate">True</property>
-          <property name="row">12</property>
-          <property name="sticky">sw</property>
         </layout>
       </object>
     </child>
