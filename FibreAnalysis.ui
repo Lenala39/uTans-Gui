@@ -11,14 +11,6 @@
       <property name="padx">0</property>
       <property name="propagate">True</property>
       <property name="row">0</property>
-      <columns>
-        <column id="0">
-          <property name="weight">0</property>
-        </column>
-        <column id="1">
-          <property name="weight">0</property>
-        </column>
-      </columns>
       <rows>
         <row id="0">
           <property name="weight">5</property>
@@ -27,6 +19,14 @@
           <property name="weight">5</property>
         </row>
       </rows>
+      <columns>
+        <column id="0">
+          <property name="weight">0</property>
+        </column>
+        <column id="1">
+          <property name="weight">0</property>
+        </column>
+      </columns>
     </layout>
     <child>
       <object class="tk.Label" id="Title">
@@ -369,8 +369,9 @@
       </object>
     </child>
     <child>
-      <object class="tk.Button" id="Button_Run">
+      <object class="tk.Button" id="button_run">
         <property name="command">run_application</property>
+        <property name="default">disabled</property>
         <property name="font">TkCaptionFont</property>
         <property name="relief">raised</property>
         <property name="text" translatable="yes">Run</property>
@@ -380,6 +381,20 @@
           <property name="propagate">True</property>
           <property name="row">11</property>
           <property name="sticky">w</property>
+        </layout>
+      </object>
+    </child>
+    <child>
+      <object class="tk.Button" id="button_default">
+        <property name="command">set_default_values</property>
+        <property name="font">TkHeadingFont</property>
+        <property name="text" translatable="yes">Reset</property>
+        <layout>
+          <property name="column">1</property>
+          <property name="padx">10</property>
+          <property name="propagate">True</property>
+          <property name="row">11</property>
+          <property name="sticky">e</property>
         </layout>
       </object>
     </child>
